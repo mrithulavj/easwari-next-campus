@@ -47,6 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        campus: {
+          navy: "hsl(var(--campus-navy))",
+          cream: "hsl(var(--campus-cream))",
+          beige: "hsl(var(--campus-beige))",
+          'navy-light': "hsl(var(--campus-navy-light))",
+          accent: "hsl(var(--campus-accent))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
