@@ -11,7 +11,7 @@ const CampusHeader = () => {
       <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-5xl font-bold mb-4 tracking-tight">
-            Campus Life Hub
+            Next Up Easwari
           </h1>
           <p className="text-xl font-light opacity-90">
             Stay updated with events, clubs, and campus activities
