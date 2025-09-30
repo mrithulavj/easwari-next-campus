@@ -1,4 +1,4 @@
-import headerImage from "@/assets/campus-header.jpg";
+import headerImage from "@/assets/campus-main.jpg";
 
 const CampusHeader = () => {
   return (
