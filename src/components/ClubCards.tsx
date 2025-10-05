@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { clubs } from "@/data/clubs";
-import { Users } from "lucide-react";
+import { Info } from "lucide-react";
 
 const ClubCards = () => {
   return (
@@ -42,14 +42,16 @@ const ClubCards = () => {
                     {club.description}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-sm text-campus-navy/70">
-                      <Users className="h-4 w-4" />
-                      <span>{club.memberCount} members</span>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-start gap-2 text-xs text-campus-navy/60 bg-campus-navy/5 p-2 rounded">
+                      <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span className="italic">{club.contactNote}</span>
                     </div>
-                    <span className="text-sm font-medium text-campus-accent hover:text-campus-navy transition-colors">
-                      Learn More →
-                    </span>
+                    <div className="flex justify-end">
+                      <span className="text-sm font-medium text-campus-accent hover:text-campus-navy transition-colors">
+                        Learn More →
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Card>

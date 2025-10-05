@@ -5,9 +5,9 @@ export interface Club {
   name: string;
   description: string;
   icon: LucideIcon;
-  memberCount: number;
   category: string;
   fullDescription: string;
+  contactNote: string;
 }
 
 export interface ClubEvent {

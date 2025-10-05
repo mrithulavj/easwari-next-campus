@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import EventCard from "@/components/EventCard";
-import { ArrowLeft, Users } from "lucide-react";
+import { ArrowLeft, Info } from "lucide-react";
 
 const ClubDetails = () => {
   const { clubId } = useParams<{ clubId: string }>();
@@ -73,17 +73,17 @@ const ClubDetails = () => {
                 <Icon className="h-12 w-12 text-white" />
               </div>
               <div className="flex-1">
-                <div className="flex items-center gap-4 mb-2">
+                <div className="flex items-center gap-4 mb-4">
                   <CardTitle className="text-3xl">{club.name}</CardTitle>
                   <Badge variant="secondary">{club.category}</Badge>
                 </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Users className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">{club.memberCount} members</span>
-                </div>
-                <CardDescription className="text-lg leading-relaxed">
+                <CardDescription className="text-lg leading-relaxed mb-4">
                   {club.fullDescription}
                 </CardDescription>
+                <div className="flex items-start gap-2 text-sm text-muted-foreground bg-muted/50 p-3 rounded-lg">
+                  <Info className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                  <span className="italic">{club.contactNote}</span>
+                </div>
               </div>
             </div>
           </CardHeader>
