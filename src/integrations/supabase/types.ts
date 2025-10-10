@@ -14,16 +14,123 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clubs_auth: {
+        Row: {
+          club_email: string
+          club_name: string
+          created_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          club_email: string
+          club_name: string
+          created_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          club_email?: string
+          club_name?: string
+          created_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      college_admins: {
+        Row: {
+          admin_email: string
+          created_at: string | null
+          id: string
+          name: string | null
+          user_id: string
+        }
+        Insert: {
+          admin_email: string
+          created_at?: string | null
+          id?: string
+          name?: string | null
+          user_id: string
+        }
+        Update: {
+          admin_email?: string
+          created_at?: string | null
+          id?: string
+          name?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          created_at: string | null
+          department: string
+          id: string
+          name: string
+          phone_number: string
+          registration_number: string
+          section: string
+          user_id: string
+          year: string
+        }
+        Insert: {
+          created_at?: string | null
+          department: string
+          id?: string
+          name: string
+          phone_number: string
+          registration_number: string
+          section: string
+          user_id: string
+          year: string
+        }
+        Update: {
+          created_at?: string | null
+          department?: string
+          id?: string
+          name?: string
+          phone_number?: string
+          registration_number?: string
+          section?: string
+          user_id?: string
+          year?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "student" | "club_admin" | "college_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +257,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["student", "club_admin", "college_admin"],
+    },
   },
 } as const
