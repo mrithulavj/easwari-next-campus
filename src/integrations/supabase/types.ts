@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      class_coordinators: {
+        Row: {
+          created_at: string | null
+          department: string
+          email: string
+          id: string
+          name: string
+          section: string
+          user_id: string
+          year: string
+        }
+        Insert: {
+          created_at?: string | null
+          department: string
+          email: string
+          id?: string
+          name: string
+          section: string
+          user_id: string
+          year: string
+        }
+        Update: {
+          created_at?: string | null
+          department?: string
+          email?: string
+          id?: string
+          name?: string
+          section?: string
+          user_id?: string
+          year?: string
+        }
+        Relationships: []
+      }
       clubs_auth: {
         Row: {
           club_email: string
@@ -61,6 +94,185 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      faculty: {
+        Row: {
+          created_at: string | null
+          department: string
+          email: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          department: string
+          email: string
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          department?: string
+          email?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      hod: {
+        Row: {
+          created_at: string | null
+          department: string
+          email: string
+          id: string
+          name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          department: string
+          email: string
+          id?: string
+          name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          department?: string
+          email?: string
+          id?: string
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      od_applications: {
+        Row: {
+          class_name: string
+          coordinator_approved_at: string | null
+          coordinator_approved_by: string | null
+          coordinator_comments: string | null
+          coordinator_status:
+            | Database["public"]["Enums"]["approval_status"]
+            | null
+          created_at: string | null
+          department: string
+          event_date: string
+          event_name: string
+          faculty_approved_at: string | null
+          faculty_approved_by: string | null
+          faculty_comments: string | null
+          faculty_status: Database["public"]["Enums"]["approval_status"] | null
+          hod_approved_at: string | null
+          hod_approved_by: string | null
+          hod_comments: string | null
+          hod_status: Database["public"]["Enums"]["approval_status"] | null
+          id: string
+          od_details: string
+          od_letter_url: string | null
+          overall_status: Database["public"]["Enums"]["od_status"] | null
+          registration_number: string
+          section: string
+          student_id: string
+          student_name: string
+          updated_at: string | null
+          year: string
+        }
+        Insert: {
+          class_name: string
+          coordinator_approved_at?: string | null
+          coordinator_approved_by?: string | null
+          coordinator_comments?: string | null
+          coordinator_status?:
+            | Database["public"]["Enums"]["approval_status"]
+            | null
+          created_at?: string | null
+          department: string
+          event_date: string
+          event_name: string
+          faculty_approved_at?: string | null
+          faculty_approved_by?: string | null
+          faculty_comments?: string | null
+          faculty_status?: Database["public"]["Enums"]["approval_status"] | null
+          hod_approved_at?: string | null
+          hod_approved_by?: string | null
+          hod_comments?: string | null
+          hod_status?: Database["public"]["Enums"]["approval_status"] | null
+          id?: string
+          od_details: string
+          od_letter_url?: string | null
+          overall_status?: Database["public"]["Enums"]["od_status"] | null
+          registration_number: string
+          section: string
+          student_id: string
+          student_name: string
+          updated_at?: string | null
+          year: string
+        }
+        Update: {
+          class_name?: string
+          coordinator_approved_at?: string | null
+          coordinator_approved_by?: string | null
+          coordinator_comments?: string | null
+          coordinator_status?:
+            | Database["public"]["Enums"]["approval_status"]
+            | null
+          created_at?: string | null
+          department?: string
+          event_date?: string
+          event_name?: string
+          faculty_approved_at?: string | null
+          faculty_approved_by?: string | null
+          faculty_comments?: string | null
+          faculty_status?: Database["public"]["Enums"]["approval_status"] | null
+          hod_approved_at?: string | null
+          hod_approved_by?: string | null
+          hod_comments?: string | null
+          hod_status?: Database["public"]["Enums"]["approval_status"] | null
+          id?: string
+          od_details?: string
+          od_letter_url?: string | null
+          overall_status?: Database["public"]["Enums"]["od_status"] | null
+          registration_number?: string
+          section?: string
+          student_id?: string
+          student_name?: string
+          updated_at?: string | null
+          year?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "od_applications_coordinator_approved_by_fkey"
+            columns: ["coordinator_approved_by"]
+            isOneToOne: false
+            referencedRelation: "class_coordinators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "od_applications_faculty_approved_by_fkey"
+            columns: ["faculty_approved_by"]
+            isOneToOne: false
+            referencedRelation: "faculty"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "od_applications_hod_approved_by_fkey"
+            columns: ["hod_approved_by"]
+            isOneToOne: false
+            referencedRelation: "hod"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "od_applications_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       students: {
         Row: {
@@ -137,6 +349,8 @@ export type Database = {
         | "faculty"
         | "hod"
         | "class_coordinator"
+      approval_status: "pending" | "approved" | "rejected" | "needs_info"
+      od_status: "pending" | "approved" | "rejected" | "needs_info"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -272,6 +486,8 @@ export const Constants = {
         "hod",
         "class_coordinator",
       ],
+      approval_status: ["pending", "approved", "rejected", "needs_info"],
+      od_status: ["pending", "approved", "rejected", "needs_info"],
     },
   },
 } as const
